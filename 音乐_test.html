@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星象与旋律 - 你的专属治愈音符</title>
+    <style>
+        body {
+            background-color: #fcf9f2;
+            color: #5c5346;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 90%;
+            max-width: 480px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(184, 168, 142, 0.15);
+            border: 2px dashed #e6dec9;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #4a4033;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #9c8e7b;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #6b5e4f;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dcd3c1;
+            border-radius: 10px;
+            background-color: #faf7f0;
+            color: #5c5346;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        select:focus {
+            border-color: #b8a286;
+            background-color: #fff;
+        }
+
+        .btn {
+            background-color: #b8a286;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: #9e8a70;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        #result-section {
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .badge-title {
+            display: inline-block;
+            background: #f4eee1;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #8c785d;
+            margin-bottom: 15px;
+        }
+
+        .music-card {
+            background: #faf6ef;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 15px;
+            text-align: left;
+            border-left: 4px solid #b8a286;
+        }
+
+        .music-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+            color: #4a4033;
+        }
+
+        .music-card p {
+            margin: 6px 0;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #736654;
+        }
+
+        .back-btn {
+            background-color: transparent;
+            color: #9c8e7b;
+            border: 1px solid #dcd3c1;
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            background-color: #f4eee1;
+            color: #6b5e4f;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 测试输入表单 -->
+        <div id="form-section">
+            <h1>✦ 星象与旋律 ✦</h1>
+            <div class="subtitle">寻找契合你灵魂深处的治愈音符</div>
+
+            <div class="form-group">
+                <label for="constellation">选择你的星座：</label>
+                <select id="constellation">
+                    <option value="aries">白羊座 (03.21 - 04.19)</option>
+                    <option value="taurus">金牛座 (04.20 - 05.20)</option>
+                    <option value="gemini">双子座 (05.21 - 06.21)</option>
+                    <option value="cancer">巨蟹座 (06.22 - 07.22)</option>
+                    <option value="leo">狮子座 (07.23 - 08.22)</option>
+                    <option value="virgo">处女座 (08.23 - 09.22)</option>
+                    <option value="libra">天秤座 (09.23 - 10.23)</option>
+                    <option value="scorpio">天蝎座 (10.24 - 11.22)</option>
+                    <option value="sagittarius">射手座 (11.23 - 12.21)</option>
+                    <option value="capricorn">摩羯座 (12.22 - 01.19)</option>
+                    <option value="aquarius">水瓶座 (01.20 - 02.18)</option>
+                    <option value="pisces">双鱼座 (02.19 - 03.20)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="bloodtype">选择你的血型：</label>
+                <select id="bloodtype">
+                    <option value="A">A 型</option>
+                    <option value="B">B 型</option>
+                    <option value="O">O 型</option>
+                    <option value="AB">AB 型</option>
+                </select>
+            </div>
+
+            <!-- 新增：场景选择 -->
+            <div class="form-group">
+                <label for="scene">此刻你希望置身于什么场景？</label>
+                <select id="scene">
+                    <option value="morning">清晨第一缕阳光的窗台</option>
+                    <option value="afternoon">弥漫咖啡香的午后书房</option>
+                    <option value="night">繁星点点的深夜独处房间</option>
+                    <option value="travel">远行在路上的列车或海边</option>
+                </select>
+            </div>
+
+            <!-- 新增：当前心情选择 -->
+            <div class="form-group">
+                <label for="mood">你现在的心情是：</label>
+                <select id="mood">
+                    <option value="calm">平静如水，渴望沉淀</option>
+                    <option value="healing">略带疲惫，需要被温柔拥抱</option>
+                    <option value="dreamy">思绪万千，想要天马行空</option>
+                    <option value="energetic">元气满满，期待新的灵感</option>
+                </select>
+            </div>
+
+            <button class="btn" onclick="generateResult()">开启专属听觉疗愈</button>
+        </div>
+
+        <!-- 结果展示区域 -->
+        <div id="result-section">
+            <div class="badge-title" id="res-badge">✨ 你的专属音乐灵魂画像 ✨</div>
+            <h2 id="res-title" style="margin: 5px 0 15px 0; color: #4a4033; font-size: 20px;"></h2>
+            
+            <div class="music-card">
+                <h3 id="res-genre">推荐风格：独立民谣</h3>
+                <p><strong>场景氛围：</strong><span id="res-scene-text"></span></p>
+                <p><strong>灵魂共鸣：</strong><span id="res-desc"></span></p>
+                <p><strong>今日治愈单曲：</strong><span id="res-song"></span></p>
+            </div>
+
+            <button class="btn back-btn" onclick="resetForm()">重新测测其他组合</button>
+        </div>
+    </div>
+
+    <script>
+        const musicDatabase = {
+            "cancer_A": {
+                title: "月光下的温柔守望者",
+                genre: "治愈系轻音乐 / 独立民谣",
+                desc: "你拥有极其细腻敏感的情感，内心深处藏着一片温柔的港湾。那些带有木吉他质感、带有一点点忧伤却无比温暖的旋律，最能抚平你偶尔泛起的涟漪。",
+                song: "《Blowing in the Wind》 / 纯钢琴微风小调"
+            },
+            "aries_O": {
+                title: "追逐风暴的节奏捕手",
+                genre: "轻摇滚 / 欢快独立流行",
+                desc: "体内永远燃烧着炽热的火焰，不喜欢沉闷和一成不变。明快的鼓点和充满生命力的吉他扫弦，能完美契合你直率而勇敢的灵魂。",
+                song: "《Counting Stars》 / 充满律动的轻快独立流行乐"
+            },
+            "virgo_A": {
+                title: "午后书房的古典聆听者",
+                genre: "巴洛克室内乐 / 精致爵士",
+                desc: "对生活有着天然的秩序感与审美追求，喜欢每一个音符都恰到好处的克制与优雅。干净的钢琴独奏或低调的爵士，能带给你内心的安宁。",
+                song: "《Gymnopédie No.1》 (萨蒂) / 极简而纯粹的法式古典钢琴"
+            },
+            "aquarius_AB": {
+                title: "游离于星际的自由电波",
+                genre: "氛围音乐 (Ambient) / 合成器流行",
+                desc: "思维总是飘向远方，不愿被世俗定义。充满空间感、迷幻而治愈的电子氛围音乐，就像宇宙深处传来的回响，懂你的孤单与浪漫。",
+                song: "《Weightless》 / 科学认证最具放松效果的氛围音乐"
+            }
+        };
+
+        const defaultResult = {
+            title: "漫步云端的织梦者",
+            genre: "治愈系原声吉他 / 法式香颂",
+            desc: "你的性格中兼具了温柔与洒脱，在喧嚣的世界里总能保留一方纯净的自留地。那些像暖阳透过树叶洒下的音乐，最能陪伴你度过宁静的下午。",
+            song: "《Comptine d'un autre été》 / 经典浪漫手风琴与钢琴曲"
+        };
+
+        const sceneDescriptions = {
+            "morning": "伴随着窗外微凉的晨风与刚煮好的咖啡香，空气中弥漫着清新的木质香气。",
+            "afternoon": "阳光透过百叶窗洒在旧书页上，时间仿佛放慢了脚步，只剩流淌的旋律。",
+            "night": "四周陷入静谧，台灯投下昏黄的光影，这是一段只属于你自己的私密对话时间。",
+            "travel": "窗外的风景不断倒退，耳机里传来的音乐与远方的风景交织成一幅流动的画卷。"
+        };
+
+        function generateResult() {
+            const constellation = document.getElementById("constellation").value;
+            const bloodtype = document.getElementById("bloodtype").value;
+            const scene = document.getElementById("scene").value;
+            const mood = document.getElementById("mood").value;
+            
+            const key = constellation + "_" + bloodtype;
+            const result = musicDatabase[key] || defaultResult;
+
+            document.getElementById("res-title").innerText = result.title;
+            document.getElementById("res-genre").innerText = "推荐风格：" + result.genre;
+            document.getElementById("res-scene-text").innerText = sceneDescriptions[scene];
+            document.getElementById("res-desc").innerText = result.desc;
+            document.getElementById("res-song").innerText = result.song;
+
+            document.getElementById("form-section").style.display = "none";
+            document.getElementById("result-section").style.display = "block";
+        }
+
+        function resetForm() {
+            document.getElementById("result-section").style.display = "none";
+            document.getElementById("form-section").style.display = "block";
+        }
+    </script>
+</body>
+</html>
